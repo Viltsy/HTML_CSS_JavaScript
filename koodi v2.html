@@ -1,0 +1,212 @@
+<html> <!-- html tagi alkaa -->
+<head> <!-- head tagi alkaa -->
+ <meta http-equiv="content-type" content="text/html; charset=utf-8" /> <!-- määritetään kirjain tyyppi niin että ä ja ö tunnistuu oikein -->
+   <title>Sääsovellus</title> <!-- sivun title määritetään tässä -->
+   
+  <style> /* style tagi alkaa tästä */
+  h1 { /* aloitetaan h1 määritelly */
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; /* määritellään fontit */
+    color: aqua; /* määritellään testin väri aquaksi */
+    text-align: center; /* määritellään teksti keskelle */
+    cursor: pointer; /* cursor muutetaan pointeriksi */
+    font-size: 60px; /* fontin koko 60px */
+    margin: auto; /* automaattinen marginaali */
+  } /* lopetetaan h1 määrittely */
+  
+  h1:hover { /* h1 osiolle määritelty hover */
+    text-shadow: 1px 1px lightblue; /* määrittelee varjon 1px ja vaalean siniseksi */
+  } /* h1 osiolle määritelty hover lopetetaan */
+   
+  h2 { /* toisen otsikko fontin määrittely */
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; /* fontti määritellään */
+    margin: auto; /* marginaali on automaattinen */
+    text-align: center; /* teksti määritellään keskelle */
+  } /* toisen otsikko fontin määritettely lopetetaan */
+  
+  #tiedot { /* tiedot osio määritellään */
+   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; /* fontti määritellään */
+   background: lightcyan; /* taustaväri vaaleancyan */
+   cursor: pointer; /* kursori muutetaan pointteriksi */
+   text-align: center; /* teksti keskitetään */
+   font-weight: bold; /* fontti lihavoidaan */
+   padding-bottom: 15px; /* padding väli muutetaan 15px alhaalta */
+   padding-top: 15px; /* padding väli muutetaan 15px ylhäältä */
+   display: none; /* piilottaa kentän */
+  } /* tidot osion määrittely lopetetaan */
+  
+  #tiedot:hover { /* tiedot osiolle määritelty hover */
+    background: lightblue; /* taustaväri vaaleansininen */
+    text-shadow: 1px 1px gray; /* määrittelee varjon 1px ja harmaan väriseksi */
+  } /* tiedot osiolle määritelty hover lopetetaan */
+  
+  #haku { /* hakukenttä määritellään */
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; /* tekstin fontti määritellään */
+    text-align: center; /* teksti keskitetään */
+  } /* hakukentän määrittely lopetaan */
+  
+  #haku:hover { /* hakukentän hover määritellään */
+    text-shadow: 2px 2px lightgray; /* teksille määritellään varjo joka on 2px ja värinä vaaleanharmaa */
+  } /* hakukentän hooverin määrittely lopetetaan */
+  
+  #wrapper { /* wrapperi määritellään */
+    margin: auto; /* marginaali on automaattinen */
+    width: 960px; /* määritellee leveyden 960px */
+    align-content: center; /* määrittelee paikan keskelle */
+  } /* wrapperi määritelly lopetetaan */
+  
+  #button { /* painikkeen kenttä määritellään */
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; /* Tässä tekstin fontin on määritelty */
+    border-radius: 28px; /* leveys määritellään 28px */
+    border-bottom-left-radius: 0px; /* Muuttaa oikean ala-osion pyöristetyn rajan suoraksi tekstikentässä */
+    border-top-left-radius: 0px; /* Muuttaa oikean ylä-osion pyöristetyn rajan suoraksi tekstikentässä */
+    width: 100px; /* leveys määritellään 100px */
+    height: 60px; /* korkeus määritellään 60px */
+    color: black; /* tekstin väri muutetaan mustaksi */
+    background-color: aqua; /* kentän väri muutetaan aquaksi */
+    border: 5px; /* reunat muutetaan 5px */
+    font-weight: bold; /* lihavoidaan fontti  */
+    font-size: 30px; /* fontin koko muutetaan 30px */
+  } /* painikkeen tyylittely lopetetaan */
+  
+    #button:hover { /* painikkeen hover tyylitettely aloitetaan */
+    color: white; /* Tekstin väri muutetaan valkoiseksi */
+    box-shadow: 2px 2px darkgrey; /* Tekstikentän alle tulee varjoitus ja väri on tummanharmaa */
+    cursor: pointer; /* Hiiren kursori muutetaan "pointeriksi" */
+  } /* painikkeen hover tyylitettely lopetetaan */
+  
+  button { /* button eli napin tyylitys */
+  outline: none; /* tämä oikeastaan vain siksi koska chromessa tulee sininen laatikko reuna jos nappi on aktiivinen */
+  } /* button tyylittely lopetetaan */
+  
+   #maa { /* maa kentän tyylittely aloitetaan */
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; /* Tässä tekstin fontin on määritelty */
+    border-radius: 28px; /* Tekstikentän reunat on pyöristetty 28px  */
+    width: 350px; /* Leveys on määritelty 350px */
+    height: 60px; /* Korkeus on määritelty 60px */
+    color: black; /* Teksti väri on muutettu mustaksi */
+    font-weight: bold; /* Teksi on lihavoitu */
+    font-size: 30px; /* Tekstin Fontti on 30px */
+    border: 3px solid aqua; /* Reunat ovat 3px leveitä ja kiinteä viiva. Ne ovat myös määritetty aquan värisiksi */
+    text-align: center; /* Kirjoitettu teksti keskitetään */
+    border-bottom-right-radius: 0px; /* Muuttaa oikean ala-osion pyöristetyn rajan suoraksi tekstikentässä */
+    border-top-right-radius: 0px; /* Muuttaa oikean ylä-osion pyöristetyn rajan suoraksi tekstikentässä */
+    outline: none; /* tämä oikeastaan vain siksi koska chromessa tulee sininen laatikko reuna jos nappi on aktiivinen */
+  } /* maa tyylittely lopetetaan */
+  
+  #maa:hover { /* maa kentän hover tyylittely aloitetaan */
+   box-shadow: 2px 2px lightskyblue; /* lisätään varjo kentän päälle kun hiiri on sen päällä */
+  } /* maa:hover tyylittely lopetetaan */
+  
+  </style> <!-- style tagi suljetaan -->
+  
+  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> <!-- haetaan jquery 2.1.4 googlen palvelimelta -->
+
+
+<script> // script tagi alkaa
+  
+function fadein(){ // luodaan uusi fadein funktio
+  $(document).ready(function() { // kun documentti on latautunut funktio suoritetaan
+    if ($("#tiedot").is(":hidden")) { // jos tietot div on piilotettu tehdään jquery fadein 1500
+    $("#tiedot").fadeIn(1500); // fadeIn animaatio, jonka arvo on 1500
+  } else { //jos if lause ei toteudu (if suljetaan)
+    $("#tiedot").fadeOut(1500); // fadeOut animaatio, jonka arvo on 1500
+    $("#tiedot").fadeIn(1500);  // fadeIn animaatio, jonka arvo on 1500
+      } // else suljetaan
+ }); // document ready suljetaan
+} // functio suljetaan
+
+function hakujuttu(){ //luodaan uusi functio hakujuttu
+
+var xmlhttp = new XMLHttpRequest(); // luodaan xmlhttp muuttuja, joka on XMLHttpRequest();
+var maailma = document.getElementById("maa").value; // määritellään uusi muuttuja maailma, joka on id maan arvo 
+
+xmlhttp.open("GET","http://api.openweathermap.org/data/2.5/weather?q=" + maailma + "&units=metric&lang=fi&mode=xml&APPID=836f827635dc8a0f94d0bac9fc9b58a0",true); // xmlhttp avaa kyseisen linkin jossa on maailma niminen muuttuja, joka on käyttäjän kirjoittama muuttujan arvo
+// tähän tulee muuttuja maailman arvo + muu linkki open weather map apista teksi tulee suomeksi, lämpötila on celcius ja tulee xml tiedostona 
+xmlhttp.send(); // lähetetään xmlhttp pyyntö
+
+xmlhttp.onreadystatechange=function() { // luodaan uusi xmlhttp onreadystatechange funktio 
+  
+  if (xmlhttp.readyState==3){ // jos xmlhttp antaa readystate arvoksi kolme if suoritetaan
+  var lataus = "http://jimpunk.net/Loading/wp-content/uploads/loading1.gif"; // määritetään muuttuja lataus, johon on määritetty lataus gif osoite
+  document.getElementById("tiedot").innerHTML = "<img src=" + lataus + ">"; // näytetään kuva tiedot kentässä
+  } // if lause suljetaan
+  
+  if (xmlhttp.readyState==4 && xmlhttp.status==200){ // jos xmlhttp antaa readystaten 4 ja statukseksi 200 if lause suoritetaan
+    var xmlDoc = xmlhttp.responseXML; // luodaan uusi xmlDoc muuttuja, joka on xmlhttp:n xml vastaus
+    var x = xmlDoc.getElementsByTagName("city")[0].attributes[1].value; // kaivetaan xml tiedostosta city:n toisen attribuutin arvo
+    var y = xmlDoc.getElementsByTagName("temperature")[0].attributes[1].value; // kaivetaan xml tiedostosta temperature:n toisen attribuutin arvo
+    var n = xmlDoc.getElementsByTagName("country")[0].childNodes[0].nodeValue; // kaivetaan xml tiedostosta country:n ensimmäinen attribuutin arvo
+    var z = xmlDoc.getElementsByTagName("weather")[0].attributes[2].value; // kaivetaan xml tiedostosta weather:in kolmas attribuutin arvo
+     var d = xmlDoc.getElementsByTagName("weather")[0].attributes[1].value; // kaivetaan xml tiedostosta weather:in toinen attribuutin arvo
+     var kuva = "http://openweathermap.org/img/w/"+z+".png"; // kuva muuttuja, joka hakee muuttujan z arvon eli kuvan linkistä
+     var img ="<img src=" + kuva + " alt=" + z + ">" //muutuja img johon määritellään aiemmin saatu kuva osoite src hakuun ja alt tekstiksi muuttujan z arvo
+    
+    document.getElementById("tiedot").innerHTML = //haetaan tiedot div ja siihen luodaan tekstiä
+     "<h2>" +y+ "°C</h2>" + img + // h2 tageissä oleva muuttuja y eli lämpötila, jonka jälkeen tulee image muuttuja
+    "<br>" +d+ // muutuja d on teksti minkälainen sää on
+     "<br>" +x+", "+n; // muuttuja x on kaupungin nimi ja n maan lyhenne
+    } // suljetaan if lause
+      if (y > 0) { // if lause toteutuu jos y on suurempi kuin 0
+      $("h2").css({"color": "red"}); // h2 muutetaan punaiseksi 
+      } else { // if suljetaan ja else toteutuu -1 luvusta alkaen
+      $("h2").css({"color": "blue"}); // h2 muutetaan siniseksi
+  } // else lause suljetaan 
+     if (n == null){ //jos n muuttuja saa tyhjän arvon ei kaupunkia ole löytynyt sovelluksesta/apista
+     var kenttä = document.getElementById("maa"); //määritellään uusi muuttuja kenttä jossa haetaan maa id niminen kenttä
+     kenttä.focus(); //jos kaupunkia ei löydy valitaan kyseinen kenttä eli id nimellä maa 
+     document.getElementById("tiedot").innerHTML = "Valitettavasti emme löytäneet kirjoittamaasi kaupunkia yritä uudelleen."; //jos kaupunkia ei löydy tulostetaan haluttu teksti tiedot diviin innerhtml tavalla.
+} // if lause suljetaan
+}  // onreadystate funktio suljetaan
+} // haku juttu suljetaan funktio
+
+$(document).keypress(function(e) { // funktio event joka tarkistaa painetaanko jotain näppäimistön näppäintä
+    if(e.which == 13) { // jos event which on 13 eli enter suoritetaan if lause
+        hakujuttu(); // kutsutaan hakujuttu funktiota
+        fadein(); // kutsutaan fadein funktiota
+    } // if lause suljetaan
+}); // funktio suljetaan
+
+	</script> <!-- script tagi loppuu -->
+	</head> <!-- head tagi loppuu -->
+  
+<body> <!-- body tagi alkaa -->
+  <div id="wrapper"> <!-- luodaan sivusto div jonka id on wrapper -->
+<h1>Sääsovellus</h1> <!-- Otsikko h1 tagilla -->
+<div id ="haku"> <!-- luodaan div jonka id on haku -->
+  <input type="text" placeholder="Kirjoita kaupunki tähän" name="maailma" id="maa"> <!-- testikenttä jossa on placeholder sen nimi on maailma ja id maa  -->
+  <button type="button" id="button" onclick="hakujuttu(); fadein();">Hae</button> <!-- hae nappi kun sitä klikataan suoritetaan kaksi funktiota hakujuttu ja fadein -->
+  </div> <!-- haku div loppuu tähän -->
+  <br/> <!-- tyhjä väli -->
+<div id = "tiedot">	<!-- tiedot div alkaa -->
+</div> <!-- tiedot div loppuu -->
+</div> <!-- wrapper div loppuu -->
+
+<script> //script tagi alkaa
+  
+  $(document).keyup(function(e){ // kun dokumentissa painetaan jotain näppäintä suoritetaaan event
+  if(e.keyCode == 46) { // jos event.keyCode on delete
+      $("#tiedot").slideUp(1500); // tiedot kenttä 
+      } // if lause suljetaan
+    }); // functio suljetaan
+   
+   $('#tiedot').click(function(){ // kun tiedot kenttää klikataan suoritetaan funktio
+    $(this).animate({fontSize: "3em"}); // tekstin koko suurennetaan
+   }); // funktio suljetaan
+   
+$("#tiedot").dblclick(function() { // kun tiedot kenttää tuplaklikataan suoritetaan funktio
+  $(this).animate({fontSize: "1em"}); // tekstin koko pienennetään alkuperäiseen
+}); // funktio suljetaan
+
+$("h1").click(function(){ // jos otsikko kenttää klikataan se piilotetaan
+  $(this).slideUp(1500); // slideUp funktio jonka arvo on 1500
+}); // funktio suljetaan
+
+$("h1").dblclick(function(){ // kun otsikko kenttää klikataan kaksi kertaa se ensin piilotetaan ja sitten se tuodaan esiin
+  $(this).slideUp(1500); // slideUp funktio jonka arvo on 1500
+  $(this).slideDown(1500); // slideDown funtio jonka arvo on 1500
+  }); // funktio suljetaan
+  
+</script> <!-- script tagi suljetaan -->
+</body> <!-- body tagi loppuu -->
+</html> <!-- html tagi loppuu -->
