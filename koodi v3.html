@@ -1,0 +1,292 @@
+<html> <!-- html tagi alkaa -->
+<head> <!-- head tagi alkaa -->
+ <meta http-equiv="content-type" content="text/html; charset=utf-8" /> <!-- määritetään kirjain tyyppi niin että ä ja ö tunnistuu oikein -->
+  <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- skaalaa sivun laitteelle sopivaksi -->
+   <title>Sääsovellus</title> <!-- sivun title määritetään tässä -->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> <!-- bootstrap tyyli linkataan -->
+   
+ <style> /* style tagi alkaa tästä */
+  
+  
+  h2 { /* toisen otsikko fontin määrittely */
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; /* fontti määritellään */
+    margin: auto; /* marginaali on automaattinen */
+    text-align: center; /* teksti määritellään keskelle */
+  } /* toisen otsikko fontin määritettely lopetetaan */
+  
+  #haku { /* hakukenttä määritellään */
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; /* tekstin fontti määritellään */
+    text-align: center; /* teksti keskitetään */
+  } /* hakukentän määrittely lopetaan */
+
+.navbar { /* navigointipalkin tyylittelyjä */
+     background-image: linear-gradient(#54B4EB, #2FA4E7 60%, lightblue); 
+     background-repeat: no-repeat; 
+     border-bottom: 1px solid #178ACC; 
+     box-shadow: 0px 1px 10px white; 
+     border-radius: 0px;
+}
+
+.navbar-default { /* navigointipalkin tyylittelyjä */
+     background-color: lightblue;
+     border-color: #1995DC;
+}
+
+.navbar-default .navbar-brand,  /* navigointipalkin tyylittelyjä */
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus ,
+.navbar-default .navbar-nav > li > a {
+     color: #FFF;
+}
+
+.navbar-default .navbar-nav > li > a:hover, /* navigointipalkin tyylittelyjä */
+.navbar-default .navbar-nav > li > a:focus {
+     color: #FFF;
+     background-color: #178ACC;
+}
+
+.navbar-default .navbar-toggle:hover, /* navigointipalkin tyylittelyjä */
+.navbar-default .navbar-toggle:focus {
+    background-color: #178ACC;
+}
+
+.navbar-default .navbar-toggle { /* navigointipalkin tyylittelyjä */
+    border-color: white;
+}
+
+.navbar-default .navbar-toggle .icon-bar { /* navigointipalkin tyylittelyjä */
+    background-color: white; 
+}
+
+.jumbotron { /* tiedot osio määritellään */
+   background: lightcyan; /* taustaväri vaaleancyan */
+   cursor: pointer; /* kursori muutetaan pointteriksi */
+   text-align: center; /* teksti keskitetään */
+   font-weight: bold; /* fontti lihavoidaan */
+   padding-bottom: 15px; /* padding väli muutetaan 15px alhaalta */
+   padding-top: 15px; /* padding väli muutetaan 15px ylhäältä */
+} /* tiedot osion määrittely lopetetaan */
+  
+  .jumbotron:hover { /* tiedot osiolle määritelty hover */
+    background: lightblue; /* taustaväri vaaleansininen */
+    text-shadow: 1px 1px gray; /* määrittelee varjon 1px ja harmaan väriseksi */
+} /* tiedot osiolle määritelty hover lopetetaan */
+
+#myCarousel { 
+  margin-bottom: 15px; /* lisää 15 pikselin marginin karusellin alapuolelle */
+} /* myCarusel osio suljetaan */
+
+  
+</style> <!-- style tagi suljetaan -->
+  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>  <!-- haetaan jquery 2.1.4 googlen palvelimelta -->  
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> <!-- tässä haetaan bootstrap -->
+
+<script> // script tagi alkaa
+  
+function fadein(){ // luodaan uusi fadein funktio
+  $(document).ready(function() { // kun documentti on latautunut funktio suoritetaan
+    if ($("#tiedot").is(":hidden")) { // jos tietot div on piilotettu tehdään jquery fadein 1500
+    $("#tiedot").fadeIn(1500); // fadeIn animaatio, jonka arvo on 1500
+  } else { //jos if lause ei toteudu (if suljetaan)
+    $("#tiedot").fadeOut(1500); // fadeOut animaatio, jonka arvo on 1500
+    $("#tiedot").fadeIn(1500);  // fadeIn animaatio, jonka arvo on 1500
+      } // else suljetaan
+ }); // document ready suljetaan
+} // functio suljetaan
+
+function hakujuttu(){ //luodaan uusi functio hakujuttu
+
+var xmlhttp = new XMLHttpRequest(); // luodaan xmlhttp muuttuja, joka on XMLHttpRequest();
+var maailma = document.getElementById("maa").value; // määritellään uusi muuttuja maailma, joka on id maan arvo 
+
+xmlhttp.open("GET","http://api.openweathermap.org/data/2.5/weather?q=" + maailma + "&units=metric&lang=fi&mode=xml&APPID=836f827635dc8a0f94d0bac9fc9b58a0",true); // xmlhttp avaa kyseisen linkin jossa on maailma niminen muuttuja, joka on käyttäjän kirjoittama muuttujan arvo
+// tähän tulee muuttuja maailman arvo + muu linkki open weather map apista teksi tulee suomeksi, lämpötila on celcius ja tulee xml tiedostona 
+xmlhttp.send(); // lähetetään xmlhttp pyyntö
+
+xmlhttp.onreadystatechange=function() { // luodaan uusi xmlhttp onreadystatechange funktio 
+  
+  
+  if (xmlhttp.readyState==4 && xmlhttp.status==200){ // jos xmlhttp antaa readystaten 4 ja statukseksi 200 if lause suoritetaan
+    var xmlDoc = xmlhttp.responseXML; // luodaan uusi xmlDoc muuttuja, joka on xmlhttp:n xml vastaus
+    var x = xmlDoc.getElementsByTagName("city")[0].attributes[1].value; // kaivetaan xml tiedostosta city:n toisen attribuutin arvo
+    var y = xmlDoc.getElementsByTagName("temperature")[0].attributes[1].value; // kaivetaan xml tiedostosta temperature:n toisen attribuutin arvo
+    var n = xmlDoc.getElementsByTagName("country")[0].childNodes[0].nodeValue; // kaivetaan xml tiedostosta country:n ensimmäinen attribuutin arvo
+    var z = xmlDoc.getElementsByTagName("weather")[0].attributes[2].value; // kaivetaan xml tiedostosta weather:in kolmas attribuutin arvo
+     var d = xmlDoc.getElementsByTagName("weather")[0].attributes[1].value; // kaivetaan xml tiedostosta weather:in toinen attribuutin arvo
+     var kuva = "http://openweathermap.org/img/w/"+z+".png"; // kuva muuttuja, joka hakee muuttujan z arvon eli kuvan linkistä
+     var img ="<img src=" + kuva + " alt=" + z + ">" //muutuja img johon määritellään aiemmin saatu kuva osoite src hakuun ja alt tekstiksi muuttujan z arvo
+    
+    document.getElementById("tiedot").innerHTML = //haetaan tiedot div ja siihen luodaan tekstiä
+    "<div class='jumbotron'>" + //lisää divin, jossa on jumbotron luokka
+     "<h2>" +y+ "°C</h2>" + img + // h2 tageissä oleva muuttuja y eli lämpötila, jonka jälkeen tulee image muuttuja
+    "<br>" +d+ // muutuja d on teksti minkälainen sää on
+     "<br>" +x+", "+n; // muuttuja x on kaupungin nimi ja n maan lyhenne 
+     + "</div>" //
+    } // suljetaan if lause
+      if (y > 0) { // if lause toteutuu jos y on suurempi kuin 0
+      $("h2").css({"color": "red"}); // h2 muutetaan punaiseksi 
+      } else { // if suljetaan ja else toteutuu -1 luvusta alkaen
+      $("h2").css({"color": "blue"}); // h2 muutetaan siniseksi
+  } // else lause suljetaan 
+     if (n == null){ //jos n muuttuja saa tyhjän arvon ei kaupunkia ole löytynyt sovelluksesta/apista
+     var kenttä = document.getElementById("maa"); //määritellään uusi muuttuja kenttä jossa haetaan maa id niminen kenttä
+     kenttä.focus(); //jos kaupunkia ei löydy valitaan kyseinen kenttä eli id nimellä maa 
+     document.getElementById("tiedot").innerHTML = 
+     "<div id='alert' class='alert alert-danger'>" +
+     "<button type='button' class='close' data-dismiss='alert'>&times;</button>" + 
+     "<strong>Varoitus!</strong>" + " Valitettavasti etsimääsi kaupunkia ei löytynyt, yritä uudelleen." + "</div>"; //jos kaupunkia ei löydy tulostetaan haluttu teksti tiedot diviin innerhtml tavalla.
+} // if lause suljetaan
+}  // onreadystate funktio suljetaan
+} // haku juttu suljetaan funktio
+
+$(document).keypress(function(e) { // funktio event joka tarkistaa painetaanko jotain näppäimistön näppäintä
+    if(e.which == 13) { // jos event which on 13 eli enter suoritetaan if lause
+        hakujuttu(); // kutsutaan hakujuttu funktiota
+        fadein(); // kutsutaan fadein funktiota
+    } // if lause suljetaan
+}); // funktio suljetaan
+
+	</script> <!-- script tagi loppuu -->
+	</head> <!-- head tagi loppuu -->
+
+<body> <!-- body alkaa tästä -->
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation"> <!-- navigaatio -->
+     <div class="container-fluid"> <!-- container fluid -->
+
+          <div class="navbar-header">
+               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+               <span class="sr-only">Toggle navigation</span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               </button>
+               <a class="navbar-brand" href="#">Sääsovellus V2</a> <!-- otsikko -->
+          </div>
+
+          <div class="collapse navbar-collapse navbar-ex1-collapse">
+               <ul class="nav navbar-nav navbar-right">
+               <li><a href="# "><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Koti</a></li> <!-- Koti linkki ja sen kuva -->
+               <li><a href="# "><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Tiedot</a></li> <!-- Tiedot linkki ja sen kuva -->
+               <li><a href="#"><span class="glyphicon glyphicon-euro" aria-hidden="true"></span> Tuotteet</a></li> <!-- Blogi linkki ja sen kuva -->
+               <li><a href="#"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Blogi</a></li> <!-- Blogi linkki ja sen kuva -->
+               <li><a href="#"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Tuki</a></li> <!-- Tuki linkki ja sen kuva -->
+               </ul>
+          </div>
+     </div>
+</nav>
+  
+  <div id="myCarousel" class="carousel slide" data-ride="carousel"> <!-- määritetään karuselli -->
+ 
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li> <!-- määritetään mikä dia on aktiivinen kun sivu ladataan -->
+    <li data-target="#myCarousel" data-slide-to="1"></li> <!-- laitetaan karuselli siirtymään toiseen slideen -->
+    <li data-target="#myCarousel" data-slide-to="2"></li> <!-- laitetaan karuselli siirtymään kolmanteen slideen -->
+  </ol>
+
+  <div class="carousel-inner" role="listbox">
+    <div class="item active"> 
+      <img src="https://s.yimg.com/os/mit/media/m/weather/images/fallbacks/lead/cloudy_d-e618500.jpg" style="width:1920;height:400px" alt="sää1"> <!-- tyyleissä on määritelty kuvan koko -->
+            <div class="carousel-caption"> <!-- kuvateksti luokka -->
+        <h3>Mhhmm pilviä</h3> <!-- kuvateksti -->
+      </div>
+    </div>
+
+    <div class="item">
+      <img src="http://www.britishairways.com/cms/global/assets/images/content/760x350_beach_Pod-3.jpg" style="width:1920;height:400px" alt="aurinko"> <!-- tyyleissä on määritelty kuvan koko -->
+               <div class="carousel-caption"> <!-- kuvateksti luokka -->
+        <h3>Siitä vähä aurinkoo silmiin</h3> <!-- kuvateksti -->
+      </div>
+    </div>
+    
+     <div class="item">
+      <img src="http://digipraim.com/data_images/out/1/580805-1920x1080-wallpaper.jpg" style="width:1920;height:400px" alt="jaamursu"> <!-- tyyleissä on määritelty kuvan koko -->
+               <div class="carousel-caption"> <!-- kuvateksti luokka -->
+        <h3>Extra kuva</h3> <!-- kuvateksti -->
+      </div>
+  </div>
+ 
+ <!-- tässä määritellään karusellin napit -->
+  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+</div>
+  
+  
+  <div class="container"> <!-- luodaan sivusto div jonka id on wrapper -->
+
+<h1> Sääsovellus <small>v2</small> </h1> <!-- h1 tekstin seassa on small tyyleillä oleva teksti -->
+     <p class="lead"> Sama sovellus päivitettynä versiona. </p> <!-- p luokka nimeltä lead -->
+      <div class="row"> <!-- rou luokka -->
+<div id ="haku" class="col-lg-12"> <!-- luodaan div jonka id on haku div luokan koko on 12-->
+  <div class="input-group"> <!-- tekstikenttä ryhmä -->
+  <input type="text" class="form-control input-lg" placeholder="Kirjoita kaupunki tähän" name="maailma" id="maa"> <!-- testikenttä jossa on placeholder sen nimi on maailma ja id maa, joissa on tietyt luokka määritykset -->
+  <span class="input-group-btn"> <!-- nappi liitetään teksti kenttään -->
+    <button type="button" id="button" class="btn btn-info btn-lg" onclick="hakujuttu(); fadein();"> <!-- info nappi joko on suuri -->
+      <span class="glyphicon glyphicon-cloud" aria-hidden="true"></span> Hae</span> <!-- napissa myös tekstit hae ja pilvenkuva -->
+      </button> <!-- hae nappi kun sitä klikataan suoritetaan kaksi funktiota hakujuttu ja fadein -->
+  </span> <!-- input-group-btn span suljetaan -->
+  </div> <!-- sulkee input groupin -->
+  </div> <!-- haku div loppuu tähän -->
+  </div> <!-- sulkee rown -->
+  <br/> <!-- tyhjä väli -->
+  
+  
+<div id="tiedot"> <!-- tiedot div -->
+
+</div> <!-- tiedot div loppuu tähän -->
+
+
+<kbd>klikkaamalla</kbd> otsikkoa poistaa sen näkyvistä. <kbd>tuplaklikkaus</kbd> näyttää otsikon ja palauttaa sen näkyviin. <br>  <kbd>del</kbd> poistaa tiedot kentän näkyvistä <kbd>enter</kbd> toimii myös haku kentässä. <br>
+<kbd>klikkaamalla</kbd> otsikkon ala puolella olevaa tekstiä se voidaan suurentaa. <kbd>tuplaklikkaus</kbd> taas piilottaa tekstin.
+<br><kbd>klikkaamalla</kbd> tiedot kenttää tekstin voi suurentaa <kbd>tuplaklikkaamalla</kbd> voi tekstin taas palauttaa normaalin kokoiseksi.
+
+</div> <!-- wrapper div loppuu -->
+
+    
+<script> //script tagi alkaa
+  
+  $(document).keyup(function(e){ // kun dokumentissa painetaan jotain näppäintä suoritetaaan event
+  if(e.keyCode == 46) { // jos event.keyCode on delete
+      $("#tiedot").slideUp(1500); // tiedot kenttä 
+      } // if lause suljetaan
+    }); // functio suljetaan
+   
+   $('#tiedot').click(function(){ // kun tiedot kenttää klikataan suoritetaan funktio
+    $(this).animate({fontSize: "3em"}); // tekstin koko suurennetaan
+   }); // funktio suljetaan
+   
+   
+     $('.lead').click(function(){ // kun lead kenttää klikataan suoritetaan funktio
+    $(this).animate({fontSize: "3em"}); // tekstin koko suurennetaan
+   }); // funktio suljetaan
+   
+     
+     $('.lead').dblclick(function(){ // kun lead kenttää tuplaklikataanklikataan suoritetaan funktio
+    $(this).slideUp(1500); // tekstirullataan ylöspäin
+   }); // funktio suljetaan
+   
+   
+$("#tiedot").dblclick(function() { // kun tiedot kenttää tuplaklikataan suoritetaan funktio
+  $(this).animate({fontSize: "1em"}); // tekstin koko pienennetään alkuperäiseen
+}); // funktio suljetaan
+
+$("h1").click(function(){ // jos otsikko kenttää klikataan se piilotetaan
+  $(this).slideUp(1500); // slideUp funktio jonka arvo on 1500
+}); // funktio suljetaan
+
+$("h1").dblclick(function(){ // kun otsikko kenttää klikataan kaksi kertaa se ensin piilotetaan ja sitten se tuodaan esiin
+  $(this).slideUp(1500); // slideUp funktio jonka arvo on 1500
+  $(this).slideDown(1500); // slideDown funtio jonka arvo on 1500
+  }); // funktio suljetaan
+  
+</script> <!-- script tagi suljetaan -->
+</body> <!-- body tagi loppuu -->
+</html> <!-- html tagi loppuu -->
