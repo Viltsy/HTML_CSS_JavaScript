@@ -1,0 +1,127 @@
+ <!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript laskin</title>
+
+<script>
+
+function laske() {
+var tulos = eval(document.getElementById("laskin").value);
+document.getElementById("laskin").value = tulos;
+
+if (tulos == undefined) {
+document.getElementById("laskin").value = '';  
+}
+}  
+
+var painike = 0;
+function nayta(painike) {
+document.getElementById("laskin").value += painike;
+} 
+
+function resetoi() {
+document.getElementById("laskin").value = '';    
+}
+
+function backspace() {
+    var value = document.getElementById("laskin").value;
+    document.getElementById("laskin").value = value.substr(0, value.length - 1);
+}
+   
+</script>
+
+
+</head>
+
+
+
+<style>
+
+#laskin {
+    border-radius: 20px;
+    background: linear-gradient(lightblue, lightcyan);
+    color: white;
+    text-align: center;
+}
+
+.wrapper {
+    width: 250px;
+    margin: 0 auto;
+}
+
+.bg {
+  background: linear-gradient(darkgray, lightgray);
+  padding-top: 20px;
+  border-radius: 20px;
+}
+    
+#laskin {
+width: 200px;
+height: 50px;
+border: none;
+margin-bottom: 5px;
+font-size: 25px;
+font-weight: bold;    
+} 
+     
+.button {
+   width: 50px;
+   height: 50px; 
+   background: linear-gradient(white, cadetblue);
+   font-size: 25px;
+   margin-bottom: 5px;
+   border-radius: 25px;
+   border: none;
+   color: white;
+}
+
+body {
+text-align: center;
+}
+
+</style>
+
+<body>
+
+<h1>JavaScript laskin</h1>
+
+<div class="wrapper">
+<div class="bg">
+<form> 
+
+<input id="laskin" type="text" disabled/>
+
+<br>
+<button class="button" type="button" onclick="nayta('1')">1</button>
+<button class="button" type="button" onclick="nayta('2')">2</button> 
+<button class="button" type="button" onclick="nayta('3')">3</button>
+<button class="button" type="button" onclick="nayta('+')">+</button> 
+<br>
+<button class="button" type="button" onclick="nayta('4')">4</button> 
+<button class="button" type="button" onclick="nayta('5')">5</button>
+<button class="button" type="button" onclick="nayta('6')">6</button>
+<button class="button" type="button" onclick="nayta('-')">-</button> 
+ <br>
+<button class="button" type="button" onclick="nayta('7')">7</button> 
+<button class="button" type="button" onclick="nayta('8')">8</button>
+<button class="button" type="button" onclick="nayta('9')">9</button>
+<button class="button" type="button" onclick="nayta('/')">/</button>
+ <br>
+<button class="button" type="button" onclick="resetoi()">C</button> 
+<button class="button" type="button" onclick="nayta('0')" >0</button>
+<button class="button" type="button" onclick="nayta('.')">,</button>
+<button class="button" type="button" onclick="nayta('*')">*</button>
+<br>
+<button class="button" type="button" onclick="nayta('(')">(</button>
+<button class="button" type="button" onclick="nayta(')')">)</button>
+<button class="button" type="button" onclick="backspace()">del</button>   
+<button class="button" type="button" onclick="laske()">=</button>   
+
+</form>
+
+</div>
+    </div>
+</body>
+
+</html> 
